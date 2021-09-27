@@ -1,8 +1,9 @@
 # Intelegent Todo List
 
-It is a small project for vc to show TypeScript skills
+It is a small project for migration of [ToDo project on Props](https://github.com/Sergey-Rogalskiy/intelligitodo) to Recoil JS
+
 # Demo
-[Netlify Manual Link](https://intelegenttodo.netlify.app/)
+[Netlify Manual Link](https://todorecoil.netlify.app/)
 
 # Installation
 Run `npm install && npm start` or run a bat file.
@@ -16,7 +17,8 @@ After that all the dependicies will be installed and the local web will be avail
 
 # Tech Stack
 * HTML5, CSS3, JavaScript
-* React.js
+* React JS
+* Recoil JS
 * TypeScript
 * Webpack 5
 
@@ -27,4 +29,4 @@ After that all the dependicies will be installed and the local web will be avail
 <br>
 
 # Plans and status
-The application is fully completed besides 2 any types (for setState) for TS.
+The application is fully completed.
