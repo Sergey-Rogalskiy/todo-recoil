@@ -1,22 +1,23 @@
 import { useState } from 'react';
 import s from './index.module.css'
-import {AddItemProps} from '../types'
+import { todoItemsState } from '../state/atoms'
+import { useRecoilState } from 'recoil'
 
-const AddItem = (props: AddItemProps) => {
-    const {todoList, setTodoList} = props
+const AddItem = () => {
+    const [todoList, setTodoList] = useRecoilState(todoItemsState)
     const [text, setText] = useState('')
 
     const addItem = (e: React.FormEvent<EventTarget>) => {
         e.preventDefault()
         if (text) {
-            setTodoList(
-                [
-                    ...todoList,
-                    {id: Date.now(), label: text, done: false}
-                ]
-            )
+            const newArray = [
+                ...todoList,
+                {id: Date.now(), label: text, done: false}
+            ]
+            setTodoList(newArray)
+            localStorage.setItem('todos', JSON.stringify(newArray));
+            setText('')
         }
-        setText('')
     }
     return(
             <div className={s.new_element}>

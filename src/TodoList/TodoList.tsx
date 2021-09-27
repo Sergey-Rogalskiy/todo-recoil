@@ -1,17 +1,23 @@
 import s from './index.module.css'
-import {TodoListProps, Element} from '../types'
+import { Element} from '../types'
+import { todoItemsState } from '../state/atoms'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { filteredTodoListState } from '../state/selectors'
 
-
-const TodoList = (props: TodoListProps) => {
-    const {todoList, setTodoList, filter} = props
+const TodoList = () => {
+    const [todoList, setTodoList] = useRecoilState(todoItemsState)
 
     const setDone = (e: React.FormEvent<EventTarget>, id:number) => {
         e.preventDefault()
-        let newArray = [...todoList]
         // const index = newArray.map(e => e.id).indexOf(id);
-        const index = newArray.findIndex((el) => el.id === id);
-        newArray[index].done = !todoList[index].done
+        const index = todoList.findIndex((el) => el.id === id);
+        let newArray = [
+			...todoList.slice(0, index),
+            {...todoList[index], done: !todoList[index].done},
+			...todoList.slice(index + 1)
+        ]
         setTodoList(newArray)
+        localStorage.setItem('todos', JSON.stringify(newArray));
     }
 
     const deleteItem = (e: React.FormEvent<EventTarget>, id:number) => {
@@ -23,22 +29,10 @@ const TodoList = (props: TodoListProps) => {
 			...todoList.slice(index + 1)
         ]
         setTodoList(newArray)
+        localStorage.setItem('todos', JSON.stringify(newArray));
     }
 
-    const showVisibleItems = () => {
-		switch(filter) {
-			case 'all':
-				return todoList;
-			case 'current':
-				return todoList.filter((item: Element) => !item.done);
-			case 'done':
-				return todoList.filter((item: Element) => item.done);
-			default:
-				return todoList;
-        }
-
-    }
-    const visibleItems = showVisibleItems()
+    const visibleItems = useRecoilValue(filteredTodoListState)
 
     return(
         <ul className={s.list}>

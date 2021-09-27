@@ -1,8 +1,11 @@
 import s from './index.module.css'
-import { OptionsProps } from '../types'
+import { filterState } from '../state/atoms'
+import { doneCountState } from '../state/selectors'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
-const Options = (props: OptionsProps) => {
-    const {filter, setFilter, doneCount} = props
+const Options = () => {
+    const [filter, setFilter] = useRecoilState(filterState)
+    const doneCount = useRecoilValue(doneCountState)
     const buttons = [
         { name: 'all', label: 'All'},
         { name: 'current', label: 'Current'},

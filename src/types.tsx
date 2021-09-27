@@ -11,7 +11,6 @@ export type OptionsProps = {
 }
 
 export type TodoListProps = {
-    filter: string
     setTodoList: any
     todoList: Array<Element>
 }
