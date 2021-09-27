@@ -3,7 +3,7 @@
 It is a small project for migration of [ToDo project on Props](https://github.com/Sergey-Rogalskiy/intelligitodo) to Recoil JS
 
 # Demo
-[Netlify Manual Link](https://todorecoil.netlify.app/)
+[Netlify](https://todorecoil.netlify.app/)
 
 # Installation
 Run `npm install && npm start` or run a bat file.
